@@ -3,9 +3,9 @@
 ## **Documentation about expertise test**
 
 I changed already existing code in provided sample project for easier usage. I created driver and constants classes.
-In driver class, which should be used to work with driver, there are methods, such as: create driver, takeScreenshto, tap on middle of screen,...
-Under constants we have 2 classes one is for id_elements and one with xpaths.
-With those 2 classes there won't be hard coded strings all over project, and they will be all in one place.
+In driver class, which should be used to work with driver, there are methods like: create driver, takeScreenshot, tap on middle of the screen, ...
+Under constants there are 2 classes, one is for id_elements and one for xpaths.
+The purpose of those 2 classes is that all constants are stored in one place and are not hardcoded all over the project.
 
 Also added @AfterAll Junit method which is executed after all tests. With this we properly quit driver.
 
