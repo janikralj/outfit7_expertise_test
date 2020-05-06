@@ -18,10 +18,30 @@ import com.outfit7.driver.Driver;
 class TomTests extends BaseTest {
 
     /**
+     * Go to how to play info and validate first paragraph of list
+     */
+    @Order(1)
+    @Test
+    void testHowToPlay() {
+        // Click correct buttons to go on How To Play info
+        driver.findElement(By.id(IDElements.INFO_BUTTON)).click();
+        driver.findElement(By.id(IDElements.INFO_HOW_TO_PLAY_BUTTON)).click();
+
+        List<MobileElement> elements = driver.findElements(By.xpath(XPaths.LIST_OF_INFO_HOW_TO_PLAY));
+        // validate expected string with actual of first paragraph.
+        assertEquals("Talk to Tom and he repeats with a funny voice", elements.get(0).getText());
+        // clean up after testing
+        driver.findElement(By.id(IDElements.INFO_BUTTON_CLOSE)).click();
+        driver.findElement(By.id(IDElements.FOOD_BUTTON));
+
+        System.out.println("###Back to Tom after reading how to play.###");
+    }
+
+    /**
      * Feed Tom with cake, this will be tested that we take screenshot and save it.
      * Also we will validate that food number has been decreased by 1 when feeding Tom.
      */
-    @Order(1)
+    @Order(2)
     @Test
     void feedTomWithCake() throws InterruptedException, IOException {
         driver.findElement(By.id(IDElements.FOOD_BUTTON)).click();
@@ -43,27 +63,7 @@ class TomTests extends BaseTest {
         // validate that number of available food has been decreased by 1
         assertEquals(foodNumber - 1, foodNumberAfterEating);
 
-        System.out.println("Tom ate cake and number of available food resources has been decreased by 1.");
-    }
-
-    /**
-     * Go to how to play info and validate first paragraph of list
-     */
-    @Order(2)
-    @Test
-    void testHowToPlay() {
-        // Click correct buttons to go on How To Play info
-        driver.findElement(By.id(IDElements.INFO_BUTTON)).click();
-        driver.findElement(By.id(IDElements.INFO_HOW_TO_PLAY_BUTTON)).click();
-
-        List<MobileElement> elements = driver.findElements(By.xpath(XPaths.LIST_OF_INFO_HOW_TO_PLAY));
-        // validate expected string with actual of first paragraph.
-        assertEquals("Talk to Tom and he repeats with a funny voice", elements.get(0).getText());
-        // clean up after testing
-        driver.findElement(By.id(IDElements.INFO_BUTTON_CLOSE)).click();
-        driver.findElement(By.id(IDElements.FOOD_BUTTON));
-
-        System.out.println("Back to Tom after reading how to play.");
+        System.out.println("###Tom ate cake and number of available food resources has been decreased by 1.###");
     }
 
     /**
@@ -106,6 +106,6 @@ class TomTests extends BaseTest {
         // check we are back to Tom where it resides
         driver.findElement(By.id(IDElements.FOOD_BUTTON));
 
-        System.out.println("Tap and pawn actions with recorder functionality done.");
+        System.out.println("###Tap and pawn actions with recorder functionality done.###");
     }
 }
